@@ -17,7 +17,7 @@ const SENARAI_MURID = [
   { id: 5, name: "FATIMA ALIYSA BINTI RAZALI", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1UVqyqIOkNtuUg_W65DejLB67KD_1W-cv" },
   { id: 6, name: "FENNY FEI FREDDIE", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1jvuk3x0heVU_9sspIvHN63P_nCMA6t-o" },
   { id: 7, name: "HIDAYAH BINTI AJILUR", kelas: "5 UNIK", image: "https://i.postimg.cc/tCgdFhBH/p_1769553619005.jpg" },
-  { id: 8, name: "THUD HASNAN BIN HASNAN", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1vF5Z9EtFxhrfFPXBy0Eyc70ue1w_L4QO" },
+  { id: 8, name: "HUD HASNAN BIN HASNAN", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1vF5Z9EtFxhrfFPXBy0Eyc70ue1w_L4QO" },
   { id: 9, name: "ISKANDAR SYUKUR BIN ABDULLAH", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1ADO_REWpzTpEIpzBQ9vBtMCT7i6_7FD6" },
   { id: 10, name: "IZZATY NUR AINNYESA BINTI MAHMUD SAH", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1Vonhz-BYy18bDt0I5gRlzxSPqoPvwpoh" },
   { id: 11, name: "KEYSHA NAAILA BINTI ZAIDIE", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1TdmBe_eFvujEl4eUuRrm661FHy1kK00b" },
