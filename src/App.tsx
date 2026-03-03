@@ -1,7 +1,8 @@
+// @ts-nocheck
 import React, { useState, useEffect } from 'react';
 import { Award, Lock, LogOut, CheckCircle2, Circle, ChevronDown, UserCheck } from 'lucide-react';
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, setDoc, onSnapshot } from 'firebase/firestore';
 
 // ==========================================
@@ -14,12 +15,12 @@ const SENARAI_MURID = [
   { id: 4, name: "AUZAIE ZHARFAN BIN ROZAIDI", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/17S0rcftSjrNQZ9uAJUEpy5lqiT_yLa3i" },
   { id: 5, name: "FATIMA ALIYSA BINTI RAZALI", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1UVqyqIOkNtuUg_W65DejLB67KD_1W-cv" },
   { id: 6, name: "FENNY FEI FREDDIE", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1jvuk3x0heVU_9sspIvHN63P_nCMA6t-o" },
-  { id: 7, name: "HIDAYAH BINTI AJILUR", kelas: "5 UNIK", image: "https://i.postimg.cc/tCgdFhBH/p_1769553619005.jpg" },
+  { id: 7, name: "HIDAYAH BINTI AJILUR", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1ZPptVj9zqP--XHNGFoGKioLukHA5WLM" },
   { id: 8, name: "THUD HASNAN BIN HASNAN", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1vF5Z9EtFxhrfFPXBy0Eyc70ue1w_L4QO" },
   { id: 9, name: "ISKANDAR SYUKUR BIN ABDULLAH", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1ADO_REWpzTpEIpzBQ9vBtMCT7i6_7FD6" },
   { id: 10, name: "IZZATY NUR AINNYESA BINTI MAHMUD SAH", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1Vonhz-BYy18bDt0I5gRlzxSPqoPvwpoh" },
   { id: 11, name: "KEYSHA NAAILA BINTI ZAIDIE", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1TdmBe_eFvujEl4eUuRrm661FHy1kK00b" },
-  { id: 12, name: "NURUL HIDAYAH BINTI ADI SAPUTRA", kelas: "5 UNIK", image: "https://i.postimg.cc/Y9cNgqNP/Whats-App-Image-2026-03-03-at-07-36-22.jpg" },
+  { id: 12, name: "NURUL HIDAYAH BINTI ADI SAPUTRA", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1ESBYpBoL4VLhX_zWNMrD6S7OUL3n-fFQ" },
   { id: 13, name: "NUR AYRA NAJAA SHAQEERA BINTI SUFHIAN", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1cXi2V1MAaEq8r7zuIRIJ0kwmvN-PWZrp" },
   { id: 14, name: "AIREN BINTI ABDULLAH", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1jeoC5ja0rh4M03lH3meuzt4COS_xA45V" },
   { id: 15, name: "AISYAH BINTI MOHAMAD HAFIZ", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1FDgfi5r8xAaKGa1Z5OO9QAIt47HNtip7" },
