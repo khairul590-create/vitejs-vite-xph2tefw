@@ -8,7 +8,6 @@ import { getFirestore, doc, setDoc, onSnapshot } from 'firebase/firestore';
 // ==========================================
 // 1. DATA MURID (ANDA BOLEH TUKAR DI SINI)
 // ==========================================
-// Menambah fungsi .sort() di hujung senarai untuk susunan A-Z secara automatik
 const SENARAI_MURID = [
   { id: 1, name: "ADAM BIN AHMAD FITRI", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1HnsdFLvVDH1v-r--pqHyzDNPUIflJpGX" },
   { id: 2, name: "ADELYA QAIREEN BINTI JEFF FAZEL", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1lTUNvfRv2qR54FKu13aATXrkVf1SDEEA" },
@@ -16,27 +15,27 @@ const SENARAI_MURID = [
   { id: 4, name: "AUZAIE ZHARFAN BIN ROZAIDI", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/17S0rcftSjrNQZ9uAJUEpy5lqiT_yLa3i" },
   { id: 5, name: "FATIMA ALIYSA BINTI RAZALI", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1UVqyqIOkNtuUg_W65DejLB67KD_1W-cv" },
   { id: 6, name: "FENNY FEI FREDDIE", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1jvuk3x0heVU_9sspIvHN63P_nCMA6t-o" },
-  { id: 7, name: "HIDAYAH BINTI AJILUR", kelas: "5 UNIK", image: "https://i.postimg.cc/tCgdFhBH/p_1769553619005.jpg" },
-  { id: 8, name: "HUD HASNAN BIN HASNAN", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1vF5Z9EtFxhrfFPXBy0Eyc70ue1w_L4QO" },
+  { id: 7, name: "HIDAYAH BINTI AJILUR", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1ZPptVj9zqP--XHNGFoGKioLukHA5WLM" },
+  { id: 8, name: "THUD HASNAN BIN HASNAN", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1vF5Z9EtFxhrfFPXBy0Eyc70ue1w_L4QO" },
   { id: 9, name: "ISKANDAR SYUKUR BIN ABDULLAH", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1ADO_REWpzTpEIpzBQ9vBtMCT7i6_7FD6" },
   { id: 10, name: "IZZATY NUR AINNYESA BINTI MAHMUD SAH", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1Vonhz-BYy18bDt0I5gRlzxSPqoPvwpoh" },
   { id: 11, name: "KEYSHA NAAILA BINTI ZAIDIE", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1TdmBe_eFvujEl4eUuRrm661FHy1kK00b" },
-  { id: 12, name: "NURUL HIDAYAH BINTI ADI SAPUTRA", kelas: "5 UNIK", image: "https://i.postimg.cc/Y9cNgqNP/Whats_App_Image_2026_03_03_at_07_36_22.jpg" },
+  { id: 12, name: "NURUL HIDAYAH BINTI ADI SAPUTRA", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1ESBYpBoL4VLhX_zWNMrD6S7OUL3n-fFQ" },
   { id: 13, name: "NUR AYRA NAJAA SHAQEERA BINTI SUFHIAN", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1cXi2V1MAaEq8r7zuIRIJ0kwmvN-PWZrp" },
   { id: 14, name: "AIREN BINTI ABDULLAH", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1jeoC5ja0rh4M03lH3meuzt4COS_xA45V" },
   { id: 15, name: "AISYAH BINTI MOHAMAD HAFIZ", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1FDgfi5r8xAaKGa1Z5OO9QAIt47HNtip7" },
   { id: 16, name: "MUHAMAD SYAQIL DAIM BIN ABD NAIB", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1jX-VSD98UDV51XSZbNBPNQKk7uVZ5r3K" },
   { id: 17, name: "MUHAMMAD AZIZAN SYAZANI BIN ABDUL RAHMAN", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/15nuOdLLQhfO2Zq7IQxv-uXeQdxLGpVJb" },
   { id: 18, name: "ARYYANA ALLYANA BINTI ABDUL RASHID", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1w4OU7tLPtuSVNmYDTEvLwltAnu9GuP1I" },
-  { id: 19, name: "NUR SYAZA AQEELA BINTI JEFFRY", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1r2pwYTVqREFULA52EH1X7CGc9Pd4OYPA" },
+  { id: 19, name: "Nur Syaza Aqeela Binti Jeffry", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1r2pwYTVqREFULA52EH1X7CGc9Pd4OYPA" },
   { id: 20, name: "NUR ALISHA HUMAIRA BINTI IRRUL FADIL", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1APUI-5vFk41FZHmWFc8e0pdth8yFTjyG" },
   { id: 21, name: "MUHAMMAD ABDUR RAHMAN BIN ARIZAL", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1CPinDpDBr9CFTjBTivpgNUvYUIT_WDTU" },
   { id: 22, name: "NUR ANNISA MUTIA BINTI ASMAN", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/10cJZyTwNo0dA4_pl5HjrzTotNkAOpsqf" },
-  { id: 23, name: "YUSRINA BINTI DONE", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1JsOv0fxHm6sSrQzt4SSQKYxSeaBz_vnC" },
+  { id: 23, name: "Yusrina binti Done", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1JsOv0fxHm6sSrQzt4SSQKYxSeaBz_vnC" },
   { id: 24, name: "NURIZARA BATRISYA BINTI ABDULLAH", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1vOTSMo4NXKo-b-pZqcH1HeY-WOeM92-Z" },
   { id: 25, name: "SAFIYYA MEI BINTI MOHD SYAFIEE", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1O_J7CN2CYd4N-MHSYlmrmISr4Z4-yRBr" },
   { id: 26, name: "MOHAMAD AZLEEN BIN LEE", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1mQuYPZZ335Twb3JqJpkWb7OAoqYN-8BZ" },
-  { id: 27, name: "MUHAMMAD ADEEB AMSYAR BIN JUNADI", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1XiW4kaSa2y_JTHKkeD6s4vupRuTAAz0Y" },
+  { id: 27, name: "Muhammad Adeeb Amsyar bin Junaidi", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1XiW4kaSa2y_JTHKkeD6s4vupRuTAAz0Y" },
   { id: 28, name: "MOHAMAD AZIQ PUTRA BIN BALI", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1o3TqxFRQ6NnNcWjY9auRIO96KGOBydca" },
   { id: 29, name: "MOHAMMED SYAHMI RIDHUAN BIN MOHAMMED SABRI", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1k_rsa7bEV41cVxwexj_GKyNE0M6txg48" },
   { id: 30, name: "MUHAMMAD ALIFF DANISH BIN ABD RAHMAN YUSMAN", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1rR0RbQ7KgSIzn5fN93c1zlfI5G2uEo6W" },
@@ -57,12 +56,11 @@ const SENARAI_BULAN = [
   "Julai", "Ogos", "September", "Oktober", "November", "Disember"
 ];
 
-// Kata laluan untuk admin (Boleh ditukar)
 const KATA_LALUAN_ADMIN = "admin123";
 
-// Konfigurasi Pangkalan Data Awan (Firebase) Cikgu
+// 2. KUNCI KINI DISEMBUNYIKAN MENGGUNAKAN ENVIRONMENT VARIABLE!
 const firebaseConfig = {
-  apiKey: "AIzaSyDnKsZ9CMs4ub1xOQcQT3t1Ub_VvspKqec",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY, 
   authDomain: "kehadiran-5-unik-58e22.firebaseapp.com",
   projectId: "kehadiran-5-unik-58e22",
   storageBucket: "kehadiran-5-unik-58e22.firebasestorage.app",
@@ -74,7 +72,6 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 export default function App() {
-  // Masukkan Google Fonts untuk mengekalkan rekaan Premium
   useEffect(() => {
     const link = document.createElement('link');
     link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap';
@@ -82,23 +79,18 @@ export default function App() {
     document.head.appendChild(link);
   }, []);
 
-  // State Pengurusan
   const [isAdmin, setIsAdmin] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [loginError, setLoginError] = useState(false);
   const [passwordInput, setPasswordInput] = useState("");
-  
   const [selectedMonth, setSelectedMonth] = useState("Januari");
   
-  // State untuk Firebase dan Rekod Kehadiran
   const [user, setUser] = useState(null);
   const [rekodKehadiran, setRekodKehadiran] = useState({});
 
-  // 1. Pengesahan Pangkalan Data (Auth)
   useEffect(() => {
     const initAuth = async () => {
       try {
-        // Hanya guna Anonymous Login untuk Firebase cikgu
         await signInAnonymously(auth);
       } catch (error) {
         console.error("Ralat log masuk pangkalan data:", error);
@@ -109,18 +101,16 @@ export default function App() {
     return () => unsubscribe();
   }, []);
 
-  // 2. Tarik Data Terkini dari Awan (Real-time)
   useEffect(() => {
     if (!user) return;
     
-    // Kita guna pangkalan data cikgu
     const docRef = doc(db, 'artifacts', 'kehadiran-5-unik', 'public', 'data', 'kehadiran_bulanan', 'rekod_utama');
     
     const unsubscribe = onSnapshot(docRef, (docSnap) => {
       if (docSnap.exists()) {
         setRekodKehadiran(docSnap.data());
       } else {
-        setRekodKehadiran({}); // Kosong jika tiada data
+        setRekodKehadiran({});
       }
     }, (error) => {
       console.error("Ralat mengambil data:", error);
@@ -129,7 +119,6 @@ export default function App() {
     return () => unsubscribe();
   }, [user]);
 
-  // Fungsi Log Masuk Admin
   const handleLogin = (e) => {
     e.preventDefault();
     if (passwordInput === KATA_LALUAN_ADMIN) {
@@ -142,12 +131,10 @@ export default function App() {
     }
   };
 
-  // Fungsi Log Keluar
   const handleLogout = () => {
     setIsAdmin(false);
   };
 
-  // Fungsi untuk Admin tick/untick pelajar dan Simpan ke Awan
   const toggleKehadiran = async (muridId) => {
     if (!isAdmin || !user) return;
 
@@ -156,17 +143,14 @@ export default function App() {
     
     let newRecords;
     if (isAlreadyTicked) {
-      newRecords = currentMonthRecords.filter(id => id !== muridId); // Buang tick
+      newRecords = currentMonthRecords.filter(id => id !== muridId);
     } else {
-      newRecords = [...currentMonthRecords, muridId]; // Tambah tick
+      newRecords = [...currentMonthRecords, muridId];
     }
     
     const dataBaru = { ...rekodKehadiran, [selectedMonth]: newRecords };
-    
-    // Kemaskini di skrin serta-merta
     setRekodKehadiran(dataBaru);
 
-    // Hantar dan simpan data ke Pangkalan Data Awan Cikgu
     const docRef = doc(db, 'artifacts', 'kehadiran-5-unik', 'public', 'data', 'kehadiran_bulanan', 'rekod_utama');
     try {
       await setDoc(docRef, dataBaru, { merge: true });
@@ -175,18 +159,15 @@ export default function App() {
     }
   };
 
-  // Gaya Font
   const fontPlayfair = { fontFamily: "'Playfair Display', serif" };
   const fontInter = { fontFamily: "'Inter', sans-serif" };
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800" style={fontInter}>
-      {/* --- CORAK LATAR BELAKANG HALUS --- */}
       <div className="fixed inset-0 pointer-events-none z-0" 
            style={{ backgroundImage: 'radial-gradient(#e5e7eb 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
       </div>
 
-      {/* --- NAVIGASI ATAS --- */}
       <nav className="relative z-10 bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 px-6 py-4 flex justify-between items-center shadow-sm">
         <div className="font-bold text-slate-800 flex items-center gap-2" style={fontPlayfair}>
           <Award className="text-amber-500" size={24} />
@@ -210,7 +191,6 @@ export default function App() {
         )}
       </nav>
 
-      {/* --- MODAL LOG MASUK ADMIN --- */}
       {showLogin && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4">
           <div className="bg-white rounded-2xl p-8 max-w-sm w-full shadow-2xl relative animate-in fade-in zoom-in duration-200">
@@ -240,10 +220,7 @@ export default function App() {
         </div>
       )}
 
-      {/* --- KANDUNGAN UTAMA --- */}
       <main className="relative z-10 max-w-6xl mx-auto p-4 sm:p-8">
-        
-        {/* Header Bersama (Public & Admin) */}
         <div className="text-center mb-12 pt-6">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-tr from-amber-100 to-amber-50 mb-6 shadow-sm border border-amber-200/50 text-amber-500">
              <Award size={36} />
@@ -252,7 +229,6 @@ export default function App() {
              {isAdmin ? 'Pengurusan Kehadiran' : 'Anugerah Kehadiran'}
           </h1>
           
-          {/* Filter Bulan */}
           <div className="flex flex-col items-center justify-center mt-6">
             <label className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">Pilih Bulan</label>
             <div className="relative inline-block">
@@ -270,7 +246,6 @@ export default function App() {
           </div>
         </div>
 
-        {/* --- PAPARAN ADMIN (TICK NAMA) --- */}
         {isAdmin ? (
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
             <div className="bg-slate-50 border-b border-slate-200 p-4 px-6 flex justify-between items-center">
@@ -310,7 +285,6 @@ export default function App() {
             </div>
           </div>
         ) : 
-        /* --- PAPARAN IBU BAPA (KAD PREMIUM) --- */
         (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {SENARAI_MURID
@@ -334,7 +308,6 @@ export default function App() {
               </div>
             ))}
 
-            {/* Jika tiada murid dipilih untuk bulan tersebut */}
             {(!rekodKehadiran[selectedMonth] || rekodKehadiran[selectedMonth].length === 0) && (
               <div className="col-span-full text-center py-16 bg-white/50 rounded-2xl border border-slate-200 border-dashed">
                 <Award className="mx-auto text-slate-300 mb-4" size={48} />
@@ -345,7 +318,6 @@ export default function App() {
           </div>
         )}
 
-        {/* Footer */}
         <div className="mt-20 border-t border-slate-200/60 pt-8 text-center pb-8">
             <p className="text-slate-400 text-sm font-light">
                 Disediakan oleh <span className="text-slate-600 font-medium">Unit Hal Ehwal Murid (HEM)</span>
