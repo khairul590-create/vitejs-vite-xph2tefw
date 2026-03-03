@@ -8,6 +8,7 @@ import { getFirestore, doc, setDoc, onSnapshot } from 'firebase/firestore';
 // ==========================================
 // 1. DATA MURID (ANDA BOLEH TUKAR DI SINI)
 // ==========================================
+// Menambah fungsi .sort() di hujung senarai untuk susunan A-Z secara automatik
 const SENARAI_MURID = [
   { id: 1, name: "ADAM BIN AHMAD FITRI", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1HnsdFLvVDH1v-r--pqHyzDNPUIflJpGX" },
   { id: 2, name: "ADELYA QAIREEN BINTI JEFF FAZEL", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1lTUNvfRv2qR54FKu13aATXrkVf1SDEEA" },
@@ -49,7 +50,7 @@ const SENARAI_MURID = [
   { id: 38, name: "NUR QAYRA MEQAILA BINTI HARIZUL RAHIM", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1k8pGlB5uGRWAzb7NZNltpAPGv1bmwmy5" },
   { id: 39, name: "THADDEUS JAIDI", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/1PLImMvkkMBnTNdA23_czPR-h2Yj4W-nj" },
   { id: 40, name: "INAYA RAFFA BINTI AHMAD SHAH", kelas: "5 UNIK", image: "https://lh3.googleusercontent.com/d/16ieYYqCCWA10Y1P9MhxkUxbXDm_tsWtd" }
-];
+].sort((a, b) => a.name.localeCompare(b.name));
 
 const SENARAI_BULAN = [
   "Januari", "Februari", "Mac", "April", "Mei", "Jun", 
